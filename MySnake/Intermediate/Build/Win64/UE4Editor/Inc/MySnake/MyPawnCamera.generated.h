@@ -13,10 +13,20 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYSNAKE_MyPawnCamera_generated_h
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_SPARSE_DATA
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_RPC_WRAPPERS
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_RPC_WRAPPERS_NO_PURE_DECLS
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_INCLASS_NO_PURE_DECLS \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_SPARSE_DATA
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execGetScore); \
+	DECLARE_FUNCTION(execGetGameMode);
+
+
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetScore); \
+	DECLARE_FUNCTION(execGetGameMode);
+
+
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyPawnCamera(); \
 	friend struct Z_Construct_UClass_AMyPawnCamera_Statics; \
@@ -25,7 +35,7 @@ public: \
 	DECLARE_SERIALIZER(AMyPawnCamera)
 
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_INCLASS \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_INCLASS \
 private: \
 	static void StaticRegisterNativesAMyPawnCamera(); \
 	friend struct Z_Construct_UClass_AMyPawnCamera_Statics; \
@@ -34,7 +44,7 @@ public: \
 	DECLARE_SERIALIZER(AMyPawnCamera)
 
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_STANDARD_CONSTRUCTORS \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AMyPawnCamera(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AMyPawnCamera) \
@@ -47,7 +57,7 @@ private: \
 public:
 
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_ENHANCED_CONSTRUCTORS \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AMyPawnCamera(AMyPawnCamera&&); \
@@ -58,28 +68,28 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AMyPawnCamera)
 
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_PRIVATE_PROPERTY_OFFSET
-#define MySnake_Source_MySnake_MyPawnCamera_h_12_PROLOG
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_GENERATED_BODY_LEGACY \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_PRIVATE_PROPERTY_OFFSET
+#define MySnake_Source_MySnake_MyPawnCamera_h_14_PROLOG
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_PRIVATE_PROPERTY_OFFSET \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_SPARSE_DATA \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_RPC_WRAPPERS \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_INCLASS \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_STANDARD_CONSTRUCTORS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_PRIVATE_PROPERTY_OFFSET \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_SPARSE_DATA \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_RPC_WRAPPERS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_INCLASS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define MySnake_Source_MySnake_MyPawnCamera_h_15_GENERATED_BODY \
+#define MySnake_Source_MySnake_MyPawnCamera_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_PRIVATE_PROPERTY_OFFSET \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_SPARSE_DATA \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_INCLASS_NO_PURE_DECLS \
-	MySnake_Source_MySnake_MyPawnCamera_h_15_ENHANCED_CONSTRUCTORS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_PRIVATE_PROPERTY_OFFSET \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_SPARSE_DATA \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_INCLASS_NO_PURE_DECLS \
+	MySnake_Source_MySnake_MyPawnCamera_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
