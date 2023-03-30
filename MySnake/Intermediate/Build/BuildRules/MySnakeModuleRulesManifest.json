@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"F:\\GIT\\My-snake-UE4\\MySnake\\Source\\MySnake\\MySnake.Build.cs",
-		"F:\\GIT\\My-snake-UE4\\MySnake\\Source\\MySnake.Target.cs",
-		"F:\\GIT\\My-snake-UE4\\MySnake\\Source\\MySnakeEditor.Target.cs"
-	],
-	"EngineVersion": "4.27.2"
-}
