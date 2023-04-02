@@ -2,6 +2,7 @@
 
 
 #include "MySnakeActor.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/SphereComponent.h"
 
 // Sets default values
@@ -76,6 +77,7 @@ void AMySnakeActor::MoveSnake()
 		{
 			FVector V = SnakeBody[i-1]->GetRelativeLocation();
 			SnakeBody[i]->SetRelativeLocation(V);
+			
 		}
 		FVector HeadV =SnakeBody[0]->GetRelativeLocation();
 
@@ -87,6 +89,8 @@ void AMySnakeActor::MoveSnake()
 		if(DirectionMove.Y<0) HeadV.Y-=StepSnake;
 
 		SnakeBody[0]->SetRelativeLocation(HeadV);
+		Damage();
+
 		
 	}
 	
@@ -126,12 +130,27 @@ void AMySnakeActor::addApple()
 	
 }
 
+void AMySnakeActor::Damage()
+{
+	for (int i=1;i<=VisibleBodyChunks;i++)
+	{
+		if (SnakeBody[0]->GetComponentLocation().Equals(SnakeBody[i]->GetComponentLocation()))
+		{
+			Destroy(true,true);
+			UGameplayStatics::OpenLevel(GetWorld(), FName("NewWorld"));
+			UGameplayStatics::OpenLevel(GetWorld(), FName("Untitled"));
+
+
+		}
+			
+	
+	}
+}
+
 // Called when the game starts or when spawned
 void AMySnakeActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	
 
 
 }

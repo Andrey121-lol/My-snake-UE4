@@ -2,6 +2,7 @@
 
 
 #include "MyDeadActor.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/BoxComponent.h"
 
 // Sets default values
@@ -17,7 +18,7 @@ AMyDeadActor::AMyDeadActor()
 	DeadChunk->SetRelativeLocation(FVector(0,0,0));
 	DeadChunk->SetupAttachment(MyRoot);
 	DeadColor = ConstructorHelpers::FObjectFinderOptional<UMaterialInstance>(TEXT("MaterialInstanceConstant'/Game/Materials/Inst/M_Damage_Inst.M_Damage_Inst'")).Get();
-	DeadMesh->SetMaterial(0,DeadColor);
+	DeadChunk->SetMaterial(0,DeadColor);
 
 }
 //смэрть Snake
@@ -28,6 +29,8 @@ void AMyDeadActor::HitSnake()
 	for (int i =0;i<OverlappingActors.Num();i++)
 	{
 		OverlappingActors[i]->Destroy(true,true);
+		UGameplayStatics::OpenLevel(GetWorld(), FName("NewWorld"));
+		UGameplayStatics::OpenLevel(GetWorld(), FName("Untitled"));
 	}
 	
 }

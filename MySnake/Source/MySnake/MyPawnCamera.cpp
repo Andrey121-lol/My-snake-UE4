@@ -14,9 +14,8 @@ AMyPawnCamera::AMyPawnCamera()
 	CameraSpring = CreateDefaultSubobject <USpringArmComponent>("Spring");
 	CameraSpring->SetRelativeLocation(FVector(0,0,0));
 	MyCamera = CreateDefaultSubobject<UCameraComponent>("Camera");
-	FAttachmentTransformRules AttachmentRules(EAttachmentRule::KeepRelative, true);
-	CameraSpring->AttachToComponent(MyRootComponent,AttachmentRules);
-	MyCamera->AttachToComponent(CameraSpring,AttachmentRules);
+	CameraSpring->SetupAttachment(MyRootComponent);
+	MyCamera->SetupAttachment(CameraSpring);
 	MyCamera->SetProjectionMode(ECameraProjectionMode::Orthographic);
 	MyCamera->OrthoWidth = 3000.0f;
 	//MyCamera->OrthoWidth = 0.0f;

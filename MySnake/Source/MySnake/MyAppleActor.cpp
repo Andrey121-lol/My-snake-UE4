@@ -22,7 +22,7 @@ AMyAppleActor::AMyAppleActor()
 	AppleChank->SetMaterial(0,AppleColor);
 
 	FAttachmentTransformRules AttachmentRules(EAttachmentRule::KeepRelative, true);
-	AppleChank->AttachToComponent (MyRoot,AttachmentRules);
+	AppleChank->SetupAttachment(MyRoot);
 
 	
 }

@@ -12,10 +12,10 @@ class MYSNAKE_API AMyAppleActor : public AActor
 {
 	GENERATED_BODY()
 	
-private:	
+public:
 	// Sets default values for this actor's properties
 	AMyAppleActor();
-public:	
+
 	//vars
 	class USphereComponent* MyRoot;
 	class UStaticMesh* AppleMesh;

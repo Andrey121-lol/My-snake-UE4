@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MyAppleActor.h"
+
 #include "MySnakeActor.generated.h"
 
 UCLASS()
@@ -10,10 +11,10 @@ class MYSNAKE_API AMySnakeActor : public AActor
 {
 	GENERATED_BODY()
 
-public:
+private:
 	// Sets default values for this actor's properties
 	AMySnakeActor();
-
+public:
 	// Variables
 	int32 SnakeSize=300;
 	float StepSnake = 100.0f;
@@ -35,13 +36,16 @@ public:
 	float MaxX=685.0f ;float SpawnZ=150.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 Score = 0;
+	
 
+	
 	// Functions
 	void CreateSnakeBody();
 	void SetVisibleBodyChunks();
 	void MoveSnake();
 	void OnHitApple();
 	void addApple();
+	void Damage();
 
 public:
 	// Called every frame
