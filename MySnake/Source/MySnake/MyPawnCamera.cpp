@@ -2,6 +2,8 @@
 
 
 #include "MyPawnCamera.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 AMyPawnCamera::AMyPawnCamera()
@@ -38,50 +40,6 @@ void AMyPawnCamera::AddSnakeToMap()
 	
 }
 
-void AMyPawnCamera::Fmove(float f)
-{
-	int32 Key=f;
-	
-
-	switch (Key)
-	{
-		case 1:
-			if(wasd.X!=1)
-			{
-				wasd=FVector2D(0,0);
-				wasd.X= -1;
-			}
-		break;
-
-		case 2:
-			if(wasd.X!=-1)
-			{
-				wasd=FVector2D(0,0);
-				wasd.X= 1;
-			}
-		break;
-
-		case 3:
-			if(wasd.Y!=1)
-			{
-				wasd=FVector2D(0,0);
-				wasd.Y= -1;
-			}
-		break;
-		case 4:
-			if(wasd.Y!=-1)
-			{
-				wasd=FVector2D(0,0);
-				wasd.Y= 1;
-			}
-		break;
-	}
-	if (SnakePlayer)
-	{
-		SnakePlayer->DirectionMove=wasd;
-	}
-}
-
 void AMyPawnCamera::spawnApple()
 {
 	FRotator StartPointRot = GetActorRotation();
@@ -102,6 +60,11 @@ void AMyPawnCamera::BeginPlay()
 void AMyPawnCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	UE_LOG(LogTemp, Warning, TEXT("IsPressButton value: %d"), IsUp);
+	UE_LOG(LogTemp, Warning, TEXT("IsPressButton value: %d"), IsDown);
+	UE_LOG(LogTemp, Warning, TEXT("IsPressButton value: %d"), IsRight);
+	UE_LOG(LogTemp, Warning, TEXT("IsPressButton value: %d"), IsLeft);
+
 
 }
 
@@ -109,7 +72,138 @@ void AMyPawnCamera::Tick(float DeltaTime)
 void AMyPawnCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	InputComponent->BindAxis("KeyMap",this ,&AMyPawnCamera::Fmove);
+	
+	InputComponent->BindAction("Up",IE_Pressed,this ,&AMyPawnCamera::UpMove);
+	InputComponent->BindAction("Down",IE_Pressed,this ,&AMyPawnCamera::DownMove);
+	InputComponent->BindAction("Left",IE_Pressed,this ,&AMyPawnCamera::LeftMove);
+	InputComponent->BindAction("Right",IE_Pressed,this ,&AMyPawnCamera::RightMove);
+	InputComponent->BindAction("Up",IE_Released,this ,&AMyPawnCamera::SetPressUp);
+	InputComponent->BindAction("Down",IE_Released,this ,&AMyPawnCamera::SetPressDw);
+	InputComponent->BindAction("Left",IE_Released,this ,&AMyPawnCamera::SetPressLf);
+	InputComponent->BindAction("Right",IE_Released,this ,&AMyPawnCamera::SetPressRg);
+	InputComponent->BindAction("Pause",IE_Pressed,this ,&AMyPawnCamera::Pause);
+
+
+
 
 }
+
+void AMyPawnCamera::UpMove()
+{
+	if (!IsDown && !IsRight && !IsLeft && !IsUp)
+	{
+		// логика для движения вверх
+		if(wasd.X!=1)
+		{
+			wasd=FVector2D(0,0);
+			wasd.X= -1;
+		}
+
+		IsUp = true; // установить флаг для кнопки Up
+		if (SnakePlayer)
+		{
+			SnakePlayer->DirectionMove = wasd;
+		}
+	}
+}
+
+void AMyPawnCamera::DownMove()
+{
+	if (!IsUp && !IsRight && !IsLeft && !IsDown)
+	{
+		// логика для движения вниз
+		if(wasd.X!=-1)
+		{
+			wasd=FVector2D(0,0);
+			wasd.X= 1;
+				
+		}
+
+		IsDown = true; // установить флаг для кнопки Down
+		if (SnakePlayer)
+		{
+			SnakePlayer->DirectionMove = wasd;
+		}
+	}
+}
+
+void AMyPawnCamera::LeftMove()
+{
+	if (!IsDown && !IsRight && !IsUp && !IsLeft)
+	{
+		// логика для движения влево
+		if(wasd.Y!=1)
+		{
+			wasd=FVector2D(0,0);
+			wasd.Y= -1;
+				
+		}
+
+		IsLeft = true; // установить флаг для кнопки Left
+		if (SnakePlayer)
+		{
+			SnakePlayer->DirectionMove = wasd;
+		}
+	}
+}
+
+void AMyPawnCamera::RightMove()
+{
+	if (!IsDown && !IsUp && !IsLeft && !IsRight)
+	{
+		// логика для движения вправо
+		if(wasd.Y!=-1)
+		{
+			wasd=FVector2D(0,0);
+			wasd.Y= 1;
+				
+		}
+
+		IsRight = true; // установить флаг для кнопки Right
+		if (SnakePlayer)
+		{
+			SnakePlayer->DirectionMove = wasd;
+		}
+	}
+}
+
+void AMyPawnCamera::SetPressUp()
+{
+	IsUp = false; // сбросить флаг для кнопки Up
+}
+
+void AMyPawnCamera::SetPressDw()
+{
+	IsDown = false; // сбросить флаг для кнопки Down
+}
+
+void AMyPawnCamera::SetPressLf()
+{
+	IsLeft = false; // сбросить флаг для кнопки Left
+}
+
+void AMyPawnCamera::SetPressRg()
+{
+	IsRight = false; // сбросить флаг для кнопки Right
+}
+
+
+void AMyPawnCamera::Pause()
+{
+	flipFlop = !flipFlop; // переключаем состояние
+    
+	if (flipFlop)
+	{
+		// выполняем действия в первом состоянии
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+	}
+	else
+	{
+		// выполняем действия во втором состоянии
+		UGameplayStatics::SetGamePaused(GetWorld(), false);
+	}
+	
+}
+
+
 

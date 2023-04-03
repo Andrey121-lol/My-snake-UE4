@@ -36,12 +36,18 @@ public:
 	float MaxX=685.0f ;float SpawnZ=100.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 GameMode = 0;
+	bool IsUp =false;
+	bool IsDown =false;
+	bool IsLeft =false;
+	bool IsRight =false;
+	bool flipFlop = false;
+
+	
 	
 	
 
 	//func
 	void AddSnakeToMap();
-	void Fmove(float f);
 	void spawnApple();
 	UFUNCTION(BlueprintCallable,Category="MyF")
 	int32 GetGameMode() const {return GameMode;}
@@ -59,6 +65,16 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void UpMove();
+	void DownMove();
+	void LeftMove();
+	void RightMove();
+	void SetPressUp();
+	void SetPressDw();
+	void SetPressLf();
+	void SetPressRg();
+	void Pause();
+	
 
 	
 	
